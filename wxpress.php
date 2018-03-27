@@ -88,7 +88,7 @@ class s3Export{
   }
 
   public function sendToS3($file, $key){
-    return true;
+    // return true;
     $s3Client = $this->s3Client;
     if (strlen($key) > 1) {
       $key = ltrim($key,'/');
