@@ -88,7 +88,7 @@ class s3Export{
   }
 
   public function sendToS3($file, $key){
-    // return true;
+    return true;
     $s3Client = $this->s3Client;
     if (strlen($key) > 1) {
       $key = ltrim($key,'/');
@@ -145,6 +145,12 @@ class s3Export{
     ];
     // die($this->exportURL);
     $html = str_replace($this->siteHost,$this->exportURL,$html);
+    $html = str_replace(urlencode($this->siteHost),urlencode($this->exportURL),$html);
+
+    $slashedSiteHost = str_replace('/','\/',$this->siteHost);
+    $slashedExportUrl = str_replace('/','\/',$this->exportURL);
+    $html = str_replace($slashedSiteHost,$slashedExportUrl,$html);
+
     // $anchors = $doc->getElementsByTagName('a');
     // foreach ($anchors as $key => $a) {
     //   // out($s->getAttribute('src'));
